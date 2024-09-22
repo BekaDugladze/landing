@@ -1,0 +1,37 @@
+.welcomeDiv{
+    margin-left: 15%;
+}
+.welcomeDiv h1{
+    font-family: "Poller One", serif;
+    color: rgb(102, 6, 102);
+    font-size: 50px;
+}
+.welcomeDiv p{
+    color: gray;
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+}
+.welcomeDiv a{
+    background-color: rgb(102, 6, 102);
+    padding: 5px 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+    border-radius: 25px;
+    color: white;
+    margin: 10px 0;
+    
+}
+.welcomeDiv a:hover{
+    background-color: white;
+    color: rgb(102, 6, 102);
+    border: 1px solid rgb(102, 6, 102)
+}
+
+@media screen and (min-width: 100px) and (max-width: 700px){
+    .welcomeDiv{
+        margin: 0;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+}

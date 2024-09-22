@@ -1,0 +1,27 @@
+.formInput input{
+    width: 100%; 
+    height: auto;
+    border: 1px solid rgb(102, 6, 102);
+    outline: none; 
+    padding:3px 9px;
+    font-size: 15px; 
+    border-radius:10px;
+    margin: 3px;
+}
+#submit{
+    background-color: rgb(102, 6, 102);
+    padding: 3px 9px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
+    border-radius: 25px;
+    color: white;
+    margin: 10px 0;
+    width: fit-content;
+    align-self: center;
+    cursor: pointer;
+}
+#submit:hover{
+    background-color: white;
+    color: rgb(102, 6, 102);
+    border: 1px solid rgb(102, 6, 102)
+}

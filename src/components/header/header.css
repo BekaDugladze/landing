@@ -1,0 +1,50 @@
+.headerUl{
+    display: flex;
+}
+.headerUl li{
+    text-decoration: none;
+    margin: 0 10px;
+    color: rgb(62, 0, 62);
+    cursor: pointer;
+    transition: 0.5s;
+}
+.headerUl li:hover{
+    color: rgb(223, 30, 30);
+}
+#menu{
+    display: none;
+}
+.dropUl li{
+    margin: 5px ;
+}
+
+.mobileUl{
+    height: 80%;
+    overflow-y: auto;
+    width: 100%;
+}
+.mobileUl li{
+    text-decoration: none;
+    margin: 10px;
+    color: rgb(62, 0, 62);
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 25px;
+    text-align: center;
+}
+.mobileUl li:hover{
+    color: rgb(223, 30, 30);
+}
+
+@media screen and (max-width:700px) and (min-width:100px) {
+    #menu{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        color: rgb(62, 0, 62);
+    }
+    .headerUl{
+        display: none;
+    }
+}

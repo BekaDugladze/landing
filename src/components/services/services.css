@@ -1,0 +1,14 @@
+.aServices{
+    background-color: rgb(102, 6, 102);
+    padding: 2px 6px;
+    font-family: '"Poller One", serif';
+    font-size: 20px;
+    border-radius: 25px;
+    color: white;
+    margin: 10px 0;
+}
+.aServices:hover{
+    background-color: white;
+    color: rgb(102, 6, 102);
+    border: 1px solid rgb(102, 6, 102)
+}
