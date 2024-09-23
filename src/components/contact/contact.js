@@ -10,6 +10,10 @@ export function Contact() {
     const [isVisible, setIsVisible] = useState(false);
     const [submit, setSubmit] = useState(false);
     const [error, setError] = useState(false);
+    
+    const service = process.env.REACT_APP_SERVICE
+    const template = process.env.REACT_APP_TEMPLATE
+    const id = process.env.REACT_APP_USER_ID
 
 
     const formRef = useRef();
@@ -40,8 +44,8 @@ export function Contact() {
 
     const sendEmail = async (e) => {
         e.preventDefault();
-    
-        // Get the message from the contentEditable div
+        
+        console.log(`${service}, ${id}, ${template}`)
         const message = formRef.current.querySelector('[contentEditable]').innerText;
     
         // Prepare the data to send
@@ -55,7 +59,7 @@ export function Contact() {
         console.log(formData);
         console.log(emailjs)
         try {
-            await emailjs.send('landingService', 'landing', formData, 'w1t-bZAQLF-SxE4Ql').then(
+            await emailjs.send(service, template, formData, id).then(
                 (response) => {
                   console.log('SUCCESS!', response.status, response.text);
                   formRef.current.reset();
