@@ -45,7 +45,6 @@ export function Contact() {
     const sendEmail = async (e) => {
         e.preventDefault();
         
-        console.log(`${service}, ${id}, ${template}`)
         const message = formRef.current.querySelector('[contentEditable]').innerText;
     
         // Prepare the data to send
