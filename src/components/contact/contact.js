@@ -3,11 +3,16 @@ import './contact.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCubes, faHighlighter, faLocation, faMailBulk, faWebAwesome } from "@fortawesome/free-solid-svg-icons";
 import 'animate.css'
+import emailjs from 'emailjs-com'
 
 export function Contact() {
     const sectionRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
     const [submit, setSubmit] = useState(false);
+    const [error, setError] = useState(false);
+
+
+    const formRef = useRef();
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -32,6 +37,39 @@ export function Contact() {
             }
         };
     }, []);
+
+    const sendEmail = async (e) => {
+        e.preventDefault();
+    
+        // Get the message from the contentEditable div
+        const message = formRef.current.querySelector('[contentEditable]').innerText;
+    
+        // Prepare the data to send
+        const formData = {
+          from_name: formRef.current.user_name.value,
+          to_name: 'beka',
+          from_email: formRef.current.user_email.value,
+          message: message,
+        };
+    
+        console.log(formData);
+        console.log(emailjs)
+        try {
+            await emailjs.send('landingService', 'landing', formData, 'w1t-bZAQLF-SxE4Ql').then(
+                (response) => {
+                  console.log('SUCCESS!', response.status, response.text);
+                  formRef.current.reset();
+                  setSubmit(true); setTimeout(() => {setSubmit(false);}, 5000)
+                },
+                (error) => {
+                  console.log('FAILED...', error);
+                  setError(true); setTimeout(() => {setError(false);}, 5000)
+                },
+            )
+        } catch (error) {
+            throw new Error(error);
+        }
+      };
     return(
         <section
         ref={sectionRef}
@@ -103,18 +141,19 @@ export function Contact() {
                     </div>
                 </div>
             </div>
-                <form className='flex flex-col'
-                onSubmit={() => {setSubmit(true); setTimeout(()=> {setSubmit(false)}, 7000)}}>
+                <form className='flex flex-col' ref={formRef}
+                onSubmit={sendEmail}>
                     <div className='flex flex-row formInput'>
-                        <input type="text" placeholder='Enter your name' required/>
-                        <input type='email' placeholder='Enter your email address' required/>
+                        <input type="text" name='user_name' placeholder='Enter your name' required/>
+                        <input type='email' name='user_email' placeholder='Enter your email address' required/>
                     </div>
-                    <div contentEditable placeholder={'write message'} style={{
+                    <div contentEditable name="message" placeholder={'write message'} style={{
                         width: '100%', height: '200px', overflowY: 'auto',
                         border: '1px solid rgb(102, 6, 102)', outline: 'none', padding:'3px 9px',
                         fontSize: '13px', borderRadius:'10px'}}></div>
-                    <input id='submit' type='submit' value='send' />
-                    {submit && <p className='text-center text-red-800'>Sorry, something went wrong! </p>}
+                    <input id='submit' type='submit' value='send' />                    
+                    {submit && <p className='text-center text-green-800'>Email Sent Successfully </p>}
+                    {error && <p className='text-center text-red-800'>Sorry, something went wrong! </p>}
                 </form>
         </div>
         </section>
